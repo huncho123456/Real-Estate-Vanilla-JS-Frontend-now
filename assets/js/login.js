@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
       // Capitalize user name and set greeting
       const fullName = `${capitalize(user.firstName)} ${capitalize(user.lastName)}`;
-      titleElement.textContent = `Welcome Consultant ${fullName}! 🎉`;
+      titleElement.textContent = `Hi Consultant ${fullName}`;
     } catch (err) {
       console.error("❌ Error fetching user:", err.message);
     }
