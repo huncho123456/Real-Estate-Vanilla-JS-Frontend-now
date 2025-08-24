@@ -128,20 +128,7 @@ function autofillReferralCode() {
   }
 }
 
-
-// ✅ Save user data to localStorage only
-export function setUserData(data) {
-  localStorage.setItem("userData", JSON.stringify(data));
-}
-
-// ✅ Always read fresh data from localStorage
-export function getUserData() {
-  const saved = localStorage.getItem("userData");
-  return saved ? JSON.parse(saved) : null;
-}
-
 export async function registerUser(data) {
-  localStorage.removeItem("userData");
   const jwt = await Token();
   console.log("JWT being sent:", jwt);
 
@@ -156,46 +143,42 @@ export async function registerUser(data) {
     });
 
     const text = await response.text();
-    console.log("Raw response body:", text);
-
+    console.log("Raw response body:", text);  // Already exists
+    
     let result;
     try {
       result = JSON.parse(text);
+      console.log("✅ Parsed result object:", result); // <-- ADD THIS
     } catch (err) {
       console.error("❌ Failed to parse JSON:", err.message);
       showBootstrapModal("⚠️ Server returned invalid JSON", "Unexpected Error");
       return;
     }
-
+    
     if (response.ok) {
-      console.log("✅ Parsed result:", result);
-      
-
-      if (result.user?.email && result.referralCode) {
-        const userToSave = {
-          email: result.user.email,
-          referralCode: result.referralCode,
-          password: result.password,
-          timestamp: result.timestamp || new Date().toISOString()
-        };
-
-        setUserData(userToSave);
+      // Debug: Check structure before accessing nested data
+      if (result && result.user && result.user.email) {
+        showBootstrapModal(
+          `🎉 Hang tight! We're sending a welcome email to <strong>${result.user.email}</strong>.`,
+          "Welcome Aboard!"
+        );
       } else {
-        console.warn("⚠️ Missing user or referral code in result.");
+        console.warn("⚠️ 'user' or 'email' missing from result:", result);
+    
+        showBootstrapModal(
+          `🎉 Registration successful, but email is missing from response.`,
+          "Welcome Aboard!"
+        );
       }
+    
       refreshApp(3000);
-      showBootstrapModal(
-        `🎉 Hang tight! We're sending a welcome email to <strong>${result.user.email}</strong>.`,
-        "Welcome Aboard!"
-      );
-
-      
+    
     } else {
-      const errorMessage = result.message || "An unknown error occurred.";
+      const errorMessage = result?.message || "An unknown error occurred.";
       console.error("❌ Registration failed:", result);
       showBootstrapModal(`❌ ${errorMessage}`, "Registration Failed");
     }
-
+    
   } catch (error) {
     console.error("❌ Network/Server error:", error);
     showBootstrapModal(`⚠️ ${error.message || "Server error."}`, "Request Failed");

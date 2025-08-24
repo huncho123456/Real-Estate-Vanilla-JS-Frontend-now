@@ -2,6 +2,20 @@
  * Main
  */
 
+window.addEventListener('load', () => {
+  const preloader = document.getElementById('preloader');
+  const content = document.getElementById('main-content');
+
+  // Trigger fade-out
+  preloader.classList.add('fade-out');
+
+  // After transition, remove preloader
+  setTimeout(() => {
+    preloader.style.display = 'none';
+    content.style.display = 'block';
+  }, 700); // matches transition duration
+});
+
 'use strict';
 
 let menu,
@@ -127,3 +141,5 @@ document.addEventListener('DOMContentLoaded', function () {
 function isMacOS() {
   return /Mac|iPod|iPhone|iPad/.test(navigator.userAgent);
 }
+
+
