@@ -1,9 +1,15 @@
-import  {CONFIG} from "./config.js";
-import  {token} from "./login.js"
-
-// DOMContentLoaded for Initialization
+import { CONFIG } from "./config.js";
+import { token } from "./login.js";
 
 document.addEventListener("DOMContentLoaded", () => {
+  // 🔐 Only check redirect if we are NOT already on login page
+ 
+  if (!token && !window.location.pathname.includes("auth-login-basic.html")) {
+    window.location.href = "auth-login-basic.html";
+    return;
+  }
+
+  // ✅ Run your other setups
   setupPasswordToggle();
   initializeReferralSection();
   setupCopyButton();
@@ -25,9 +31,6 @@ function setupPasswordToggle() {
   }
 }
 
-
-
-
 // 📎 Fetch Referral Link
 async function getReferralLink(token) {
   try {
@@ -41,7 +44,6 @@ async function getReferralLink(token) {
     if (!response.ok) throw new Error("Failed to fetch referral link");
 
     const data = await response.json();
-    console.log(response)
     return data.referralLink;
   } catch (error) {
     console.error("Referral link error:", error);
@@ -105,5 +107,3 @@ function setupCopyButton() {
     }
   });
 }
-
-
