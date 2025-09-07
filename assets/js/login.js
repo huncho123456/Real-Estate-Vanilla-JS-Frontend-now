@@ -58,7 +58,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // ⏳ Delay redirect
         setTimeout(() => {
+<<<<<<< HEAD
           window.location.href = "index.html";
+=======
+          window.location.href = "../index.html";
+>>>>>>> cc6e20c (deploy to netlify)
         }, 2000);
 
       } catch (error) {
