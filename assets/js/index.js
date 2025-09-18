@@ -2,18 +2,20 @@ import { CONFIG } from "./config.js";
 import { token } from "./login.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  // 🔐 Only check redirect if we are NOT already on login page
- 
+  // 🔐 Redirect immediately if no token and not on login page
   if (!token && !window.location.pathname.includes("auth-login-basic.html")) {
-    window.location.href = "auth-login-basic.html";
+    window.location.href = "html/auth-login-basic.html";
     return;
   }
 
+  
   // ✅ Run your other setups
   setupPasswordToggle();
   initializeReferralSection();
   setupCopyButton();
+ 
 });
+
 
 // 🔐 Toggle Password Visibility
 function setupPasswordToggle() {

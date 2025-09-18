@@ -38,32 +38,50 @@ async function Token() {
 
 // 🧾 Handle Registration Form Submission
 function setupFormSubmission() {
-    const form = document.getElementById("formAuthentication");
-    if (!form) return;
-  
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-  
-      const data = {
-        email: document.getElementById("email").value.trim(),
-        password: document.getElementById("password").value,
-        firstName: document.getElementById("firstName").value.trim(),
-        lastName: document.getElementById("lastName").value.trim(),
-        phoneNumber: document.getElementById("phoneNumber").value.trim(),
-        dateOfBirth: document.getElementById("dateOfBirth").value,
-        sex: document.getElementById("sex").value,
-        maritalStatus: document.getElementById("maritalStatus").value,
-        homeAddress: document.getElementById("homeAddress").value.trim(),
-        bankName: document.getElementById("bankName").value.trim(),
-        accountNumber: document.getElementById("accountNumber").value.trim(),
-        accountName: document.getElementById("accountName").value.trim(),
-        employmentStatus: document.getElementById("employmentStatus").value,
-        referredBy: document.getElementById("referredBy").value.trim(),
-      };
-  
+  const form = document.getElementById("formAuthentication");
+  const btn = document.getElementById("lazyBtn");
+  const btnText = btn.querySelector(".btn-text");
+  const spinner = btn.querySelector(".spinner-border");
+
+  if (!form) return;
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    // 🔵 Show loading state
+    btn.disabled = true;
+    btnText.textContent = "Loading...";
+    spinner.classList.remove("d-none");
+
+    const data = {
+      email: document.getElementById("email").value.trim(),
+      password: document.getElementById("password").value,
+      firstName: document.getElementById("firstName").value.trim(),
+      lastName: document.getElementById("lastName").value.trim(),
+      phoneNumber: document.getElementById("phoneNumber").value.trim(),
+      dateOfBirth: document.getElementById("dateOfBirth").value,
+      sex: document.getElementById("sex").value,
+      maritalStatus: document.getElementById("maritalStatus").value,
+      homeAddress: document.getElementById("homeAddress").value.trim(),
+      bankName: document.getElementById("bankName").value.trim(),
+      accountNumber: document.getElementById("accountNumber").value.trim(),
+      accountName: document.getElementById("accountName").value.trim(),
+      employmentStatus: document.getElementById("employmentStatus").value,
+      referredBy: document.getElementById("referredBy").value.trim(),
+    };
+
+    try {
       await registerUser(data);
-    });
-  }
+    } catch (error) {
+      console.error("Registration failed:", error);
+    } finally {
+      // 🔵 Reset button after response
+      btn.disabled = false;
+      btnText.textContent = "Submit";
+      spinner.classList.add("d-none");
+    }
+  });
+}
 
   function setupPasswordToggle() {
   const passwordInput = document.getElementById("password");

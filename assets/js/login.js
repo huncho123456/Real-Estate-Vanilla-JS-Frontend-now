@@ -1,7 +1,6 @@
 import {CONFIG} from "./config.js"; 
 
 export const token = localStorage.getItem("jwtToken");
-console.log(token)
 
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("formAuthentication");
@@ -29,10 +28,20 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  
   // 🚀 Login form submit handler
   if (form) {
+    const btn = document.getElementById("lazyBtn"); // make sure your button has this id
+    const btnText = btn.querySelector(".btn-text");
+    const spinner = btn.querySelector(".spinner-border");
+  
     form.addEventListener("submit", async function (e) {
       e.preventDefault();
+  
+      // 🔵 Show loading state
+      btn.disabled = true;
+      btnText.textContent = "Loading...";
+      spinner.classList.remove("d-none");
 
       const email = document.getElementById("email").value.trim();
       const password = document.getElementById("password").value;
@@ -50,10 +59,12 @@ document.addEventListener("DOMContentLoaded", function () {
           throw new Error(data.message || "Invalid credentials");
         }
 
-        // 💾 Save token
+        
         localStorage.setItem("jwtToken", data.token);
+        localStorage.setItem("loginTime", Date.now());
 
-        // ✅ Success feedback
+
+        
         showBootstrapModal("🎉 Login successful! Redirecting...", "Success");
 
         // ⏳ Delay redirect
@@ -63,6 +74,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
       } catch (error) {
         showBootstrapModal(`❌ Login failed: ${error.message}`, "Error");
+      } finally {
+        // 🔄 Reset button state (always runs)
+        btn.disabled = false;
+        btnText.textContent = "Login";
+        spinner.classList.add("d-none");
       }
     });
   }
@@ -150,12 +166,15 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
 
+
   
   // Helper function to capitalize first letter
   function capitalize(str) {
     if (!str) return "";
     return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
   }
+
+  
   
 
 

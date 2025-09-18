@@ -813,8 +813,8 @@
                   </div>
                 </div>
                 <!-- Total Revenue -->
-                <!-- <div class="col-12 col-xxl-8 order-2 order-md-3 order-xxl-2 mb-6 total-revenue">
-                  <div class="card">
+                <div class="col-12 col-xxl-8 order-2 order-md-3 order-xxl-2 mb-6 total-revenue" >
+                  <div class="card" style="min-height: 493px;">
                     <div class="row row-bordered g-0">
                       <div class="col-lg-8">
                         <div class="card-header d-flex align-items-center justify-content-between">
@@ -844,7 +844,7 @@
                         <div class="card-body px-xl-9 py-12 d-flex align-items-center flex-column">
                           <div class="text-center mb-6">
                             <div class="btn-group">
-                              <button type="button" class="btn btn-outline-primary">
+                              <!-- <button type="button" class="btn btn-outline-primary">
                                 <script>
                                   document.write(new Date().getFullYear() - 1);
                                 </script>
@@ -860,14 +860,14 @@
                                 <li><a class="dropdown-item" href="javascript:void(0);">2021</a></li>
                                 <li><a class="dropdown-item" href="javascript:void(0);">2020</a></li>
                                 <li><a class="dropdown-item" href="javascript:void(0);">2019</a></li>
-                              </ul>
+                              </ul> -->
                             </div>
-                          </div> -->
+                          </div> 
 
-                          <!-- <div id="growthChart"></div>
+                           <div id="growthChart"></div>
                           <div class="text-center fw-medium my-6">62% Company Growth</div>
 
-                          <div class="d-flex gap-11 justify-content-between">
+                          <!-- <div class="d-flex gap-11 justify-content-between">
                             <div class="d-flex">
                               <div class="avatar me-2">
                                 <span class="avatar-initial rounded-2 bg-label-primary"
@@ -898,12 +898,12 @@
                                 <h6 class="mb-0">$41.2k</h6>
                               </div>
                             </div>
-                          </div>
+                          </div> -->
                         </div>
                       </div>
                     </div>
                   </div>
-                </div> -->
+                </div> 
                 <!--/ Total Revenue -->
                 <div class="col-12 col-md-8 col-lg-12 col-xxl-4 order-3 order-md-2 profile-report">
                   <div class="row">
@@ -930,6 +930,7 @@
                               </div> -->
                             </div>
                           </div>
+                          
                           <div id="referral">
                             <p class="mb-1">Refferal Link</p>
                             <h4 class="card-title mb-3" style="font-size: 0.9rem; word-break: break-all;"  ></h4>
@@ -1345,9 +1346,23 @@
         </div>
         <!-- / Layout page -->
       </div>
+      
 
       <!-- Overlay -->
       <div class="layout-overlay layout-menu-toggle"></div>
+    </div>
+    <div class="modal fade" id="responseModal" tabindex="-1" aria-labelledby="responseModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="responseModalLabel">Notification</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="modalMessage">
+            <!-- Message gets injected here -->
+          </div>
+        </div>
+      </div>
     </div>
     </body>
     <!-- / Layout wrapper -->
@@ -1373,6 +1388,7 @@
     <script src="../assets/js/main.js"></script>
     <script type="module" src="../assets/js/login.js"></script>
     <script type="module" src="../assets/js/index.js"></script>
+    <script type="module" src="../assets/js/session.js"></script>
 
     <!-- Page JS -->
     <script src="../assets/js/dashboards-analytics.js"></script>

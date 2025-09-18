@@ -23047,6 +23047,7 @@ body:not(.modal-open) .layout-content-navbar .layout-navbar {
   block-size: var(--bs-avatar-size);
   cursor: pointer;
   inline-size: var(--bs-avatar-size);
+  -webkit-tap-highlight-color: transparent; 
 }
 .avatar .avatar-initial {
   position: absolute;

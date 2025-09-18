@@ -90,38 +90,51 @@
               <!-- /Logo -->
               <h4 class="mb-1">Welcome to Satisfyre! </h4>
               <p class="mb-6">Please sign-in to your account and start the adventure</p>
-
-             <form id="formAuthentication" class="mb-6" action="#">
-              <div class="mb-6">
-                <label for="email" class="form-label">Email</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="email"
-                  placeholder="Enter your email"
-                  required />
-              </div>
-
-              <div class="mb-6">
-                <label for="password" class="form-label">Password</label>
-                <div class="input-group input-group-merge">
+              <form id="formAuthentication" class="mb-6" action="#">
+                <div class="mb-6">
+                  <label for="email" class="form-label">Email</label>
                   <input
-                    type="password"
-                    id="password"
+                    type="text"
                     class="form-control"
-                    placeholder="Password"
-                    required />
-                  <span class="input-group-text cursor-pointer">
-                    <i class="icon-base bx bx-hide"></i>
-                  </span>
+                    id="email"
+                    placeholder="Enter your email"
+                    required
+                  />
                 </div>
-              </div>
-
-              <div class="mb-6">
-                <button class="btn btn-primary d-grid w-100" type="submit">Login</button>
-              </div>
-            </form>
-
+              
+                <div class="mb-6">
+                  <label for="password" class="form-label">Password</label>
+                  <div class="input-group input-group-merge">
+                    <input
+                      type="password"
+                      id="password"
+                      class="form-control"
+                      placeholder="Password"
+                      required
+                    />
+                    <span class="input-group-text cursor-pointer">
+                      <i class="icon-base bx bx-hide"></i>
+                    </span>
+                  </div>
+                </div>
+              
+                <div class="mb-6">
+                  <button
+                    class="btn btn-primary d-grid w-100 d-flex justify-content-center align-items-center"
+                    type="submit"
+                    id="lazyBtn"
+                  >
+                    <span class="btn-text">Login</span>
+                    <span
+                      class="spinner-border spinner-border-sm ms-2 d-none"
+                      role="status"
+                      aria-hidden="true"
+                      style="vertical-align: middle;"
+                    ></span>
+                  </button>
+                </div>
+                
+              </form>
                           <p class="text-center">
                             <span>New on our platform?</span>
                             <a href="auth-register-basic.html">
