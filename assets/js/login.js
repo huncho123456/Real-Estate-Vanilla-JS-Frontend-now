@@ -1,6 +1,7 @@
 import {CONFIG} from "./config.js"; 
 
 export const token = localStorage.getItem("jwtToken");
+// console.log(token)
 
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("formAuthentication");
