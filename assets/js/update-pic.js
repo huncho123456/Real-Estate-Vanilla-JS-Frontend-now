@@ -23,7 +23,7 @@ async function fetchUser(token) {
   }
 
 function showBootstrapModal(message, title = "Notification") {
-    // Set modal title & body
+ 
     const modalTitle = document.getElementById("responseModalLabel");
     const modalBody = document.getElementById("modalMessage");
   
@@ -36,10 +36,10 @@ function showBootstrapModal(message, title = "Notification") {
   }
 
   function replaceDefaultAvatars(user) {
-    // ✅ fallback if backend didn't send a pic
+    
     const profilePic = user.profilePicUrl || "../assets/img/avatars/1.png";
   
-    // ✅ grab all <img> with that default src
+   
     const defaultAvatars = document.querySelectorAll(`img[src="../assets/img/avatars/1.png"]`);
   
     defaultAvatars.forEach(img => {
@@ -47,9 +47,30 @@ function showBootstrapModal(message, title = "Notification") {
       console.log("Avatar updated:", img, "→", profilePic);
     });
   }
+
+  function replaceUserInfo(user) {
+  
+    const infoBlocks = document.querySelectorAll('.flex-grow-1');
+  
+    infoBlocks.forEach(block => {
+      const nameEl = block.querySelector("h6");
+      const roleEl = block.querySelector("small");
+  
+      if (nameEl) {
+        nameEl.textContent = user.firstName + " " + user.lastName || "Realtor"; // fallback
+      }
+      if (roleEl) {
+        roleEl.textContent = user.role || "User"; // fallback
+      }
+  
+      console.log("User info updated:", block.innerHTML);
+    });
+  }
+  
   
   
 const user = await fetchUser(token);
 console.log(user)
 replaceDefaultAvatars(user)
+replaceUserInfo(user)
 
