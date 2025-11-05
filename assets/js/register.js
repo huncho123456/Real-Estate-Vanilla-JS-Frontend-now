@@ -113,7 +113,7 @@ async function fetchName(code) {
     display.textContent = `✅ Upline - ${name}`;
   } catch (error) {
     console.error("Upline fetch failed:", error.message);
-    document.getElementById("uplineNameDisplay").textContent = "❌ Invalid referral code.";
+    document.getElementById("uplineNameDisplay").textContent = "Invalid referral code.";
   }
 }
 
@@ -193,12 +193,12 @@ export async function registerUser(data) {
     
     } else {
       const errorMessage = result?.message || "An unknown error occurred.";
-      console.error("❌ Registration failed:", result);
-      showBootstrapModal(`❌ ${errorMessage}`, "Registration Failed");
+      console.error("Registration failed:", result);
+      showBootstrapModal(` ${errorMessage}`, "Registration Failed");
     }
     
   } catch (error) {
-    console.error("❌ Network/Server error:", error);
+    console.error("Network/Server error:", error);
     showBootstrapModal(`⚠️ ${error.message || "Server error."}`, "Request Failed");
   }
 
