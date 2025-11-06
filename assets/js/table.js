@@ -3,6 +3,7 @@ import { token } from "./login.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
   const userContainer = document.getElementById("userContainer");
+  const numberElement = document.querySelector(".number strong");
 
   try {
     // 1. Fetch user account info
@@ -27,6 +28,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (!downlineResponse.ok) throw new Error("Failed to fetch downlines");
     const downlines = await downlineResponse.json();
+
+    const numberOfDownlines = downlines.length;
+    console.log("Total downlines:", numberOfDownlines);
+
+    if (numberElement) {
+      numberElement.textContent = numberOfDownlines;
+    }
 
     if (!downlines.length) {
       userContainer.innerHTML = "<p>No downlines found.</p>";
@@ -77,3 +85,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     userContainer.innerHTML = `<p style="color:red;">${error.message}</p>`;
   }
 });
+
+const numberOfDownlines = downlines.length;
+console.log("Total downlines:", numberOfDownlines);

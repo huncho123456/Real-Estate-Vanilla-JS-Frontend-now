@@ -5230,12 +5230,14 @@ textarea.form-control-lg {
   --bs-badge-color: #fff;
   --bs-badge-border-radius: 0.25rem;
   display: inline-block;
+  position: relative;
   padding: var(--bs-badge-padding-y) var(--bs-badge-padding-x);
   font-size: var(--bs-badge-font-size);
   font-weight: var(--bs-badge-font-weight);
   line-height: 1;
   color: var(--bs-badge-color);
   text-align: center;
+  left: 40px;
   white-space: nowrap;
   vertical-align: baseline;
   border-radius: var(--bs-badge-border-radius);
@@ -13627,6 +13629,11 @@ li:not(:first-child) .dropdown-item, .dropdown-menu .dropdown-item:not(:first-ch
   white-space: nowrap !important;
 }
 
+.number{
+  position: relative;
+  text-align: center;
+  font-size: 40px;
+}
 /* rtl:begin:remove */
 .text-break {
   word-wrap: break-word !important;
