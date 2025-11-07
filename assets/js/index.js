@@ -2,6 +2,7 @@ import { CONFIG } from "./config.js";
 import { token } from "./login.js";
 
 document.addEventListener("DOMContentLoaded", () => {
+  
   // 🔐 Redirect immediately if no token and not on login page
   if (!token && !window.location.pathname.includes("auth-login-basic.html")) {
     window.location.href = "html/auth-login-basic.html";
@@ -108,4 +109,29 @@ function setupCopyButton() {
       }, 2000);
     }
   });
+
+  const yearBadge = document.querySelector(".badge.bg-label-warning");
+
+  function updateDateTime() {
+    const now = new Date();
+  
+    // Format: YEAR 2025 | 05-Nov | 19:45:12
+    const year = now.getFullYear();
+    const month = now.toLocaleString("default", { month: "short" }); 
+    const day = String(now.getDate()).padStart(2, "0");
+    const hours = String(now.getHours()).padStart(2, "0");
+    const minutes = String(now.getMinutes()).padStart(2, "0");
+    const seconds = String(now.getSeconds()).padStart(2, "0");
+  
+    // 🕒 Display everything
+    if (yearBadge) {
+      yearBadge.textContent = `YEAR ${year} | ${day}-${month} | ${hours}:${minutes}:${seconds}`;
+    }
+  }
+  
+  // 🔁 Update every second
+  setInterval(updateDateTime, 1000);
+  
+  // Run once on page load
+  updateDateTime();
 }
